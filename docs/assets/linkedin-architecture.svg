@@ -1,20 +1,74 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="627" viewBox="0 0 1200 627" fill="none">
-  <defs><linearGradient id="b" x1="0" y1="0" x2="1200" y2="627" gradientUnits="userSpaceOnUse"><stop stop-color="#F7F5F8"/><stop offset="1" stop-color="#EFEAF3"/></linearGradient><pattern id="g" width="34" height="34" patternUnits="userSpaceOnUse"><path d="M34 0H0V34" stroke="#6D6275" stroke-opacity=".035"/></pattern></defs>
-  <rect width="1200" height="627" rx="18" fill="url(#b)"/><rect width="1200" height="627" rx="18" fill="url(#g)"/>
-  <g transform="translate(54 48)"><rect width="42" height="42" rx="9" fill="#68468C"/><circle cx="21" cy="21" r="7" stroke="#FFFFFF" stroke-width="2.4"/><path d="m26 26 5 5M14 11h-4v7M28 11h4v7M14 31h-4v-7M28 31h4v-7" stroke="#EADFF2" stroke-width="2.3" stroke-linecap="round"/><text x="56" y="28" fill="#241D2D" font-family="Inter,Segoe UI,sans-serif" font-size="23" font-weight="650">ChangeLens</text></g>
-  <text x="54" y="138" fill="#71519A" font-family="ui-monospace,monospace" font-size="11" letter-spacing="1.8">ARCHITECTURE / BACKGROUND PROCESSING</text>
-  <text x="54" y="188" fill="#241D2D" font-family="Inter,Segoe UI,sans-serif" font-size="38" font-weight="580" letter-spacing="-1.5">Three runtimes. One observable flow.</text>
-  <g font-family="Inter,Segoe UI,sans-serif">
-    <g transform="translate(54 243)"><rect width="202" height="112" rx="10" fill="#FFFFFF" stroke="#526F9E" stroke-opacity=".28"/><text x="18" y="30" fill="#526F9E" font-family="ui-monospace,monospace" font-size="9">01 · PRODUCT</text><text x="18" y="61" fill="#241D2D" font-size="18" font-weight="600">Next.js web</text><text x="18" y="83" fill="#72697B" font-size="10">Dense operations UI</text></g>
-    <path d="M270 299h52" stroke="#9A919F"/><path d="m316 294 7 5-7 5" stroke="#9A919F"/>
-    <g transform="translate(336 243)"><rect width="202" height="112" rx="10" fill="#FFFFFF" stroke="#71519A" stroke-opacity=".28"/><text x="18" y="30" fill="#71519A" font-family="ui-monospace,monospace" font-size="9">02 · CONTROL PLANE</text><text x="18" y="61" fill="#241D2D" font-size="18" font-weight="600">Fastify API</text><text x="18" y="83" fill="#72697B" font-size="10">Auth · CRUD · exports</text></g>
-    <path d="M552 299h52" stroke="#9A919F"/><path d="m598 294 7 5-7 5" stroke="#9A919F"/>
-    <g transform="translate(618 243)"><rect width="202" height="112" rx="10" fill="#FFFFFF" stroke="#A56B23" stroke-opacity=".28"/><text x="18" y="30" fill="#A56B23" font-family="ui-monospace,monospace" font-size="9">03 · QUEUE</text><text x="18" y="61" fill="#241D2D" font-size="18" font-weight="600">Redis + BullMQ</text><text x="18" y="83" fill="#72697B" font-size="10">Retries · schedules · state</text></g>
-    <path d="M834 299h52" stroke="#9A919F"/><path d="m880 294 7 5-7 5" stroke="#9A919F"/>
-    <g transform="translate(900 243)"><rect width="246" height="112" rx="10" fill="#FFFFFF" stroke="#AF95FF" stroke-opacity=".28"/><text x="18" y="30" fill="#AF95FF" font-family="ui-monospace,monospace" font-size="9">04 · DATA PLANE</text><text x="18" y="61" fill="#241D2D" font-size="18" font-weight="600">Crawlee workers</text><text x="18" y="83" fill="#72697B" font-size="10">Cheerio · Playwright · webhooks</text></g>
+  <rect width="1200" height="627" rx="18" fill="#F6F6F8"/>
+  <path d="M18 0H1182C1191.94 0 1200 8.059 1200 18V126H0V18C0 8.059 8.059 0 18 0Z" fill="#251B2D"/>
+
+  <g transform="translate(54 34)">
+    <rect width="42" height="42" rx="8" fill="#704A8F"/>
+    <circle cx="21" cy="21" r="7" stroke="#FFFFFF" stroke-width="2.4"/>
+    <path d="m26 26 5 5M14 11h-4v7M28 11h4v7M14 31h-4v-7M28 31h4v-7" stroke="#EADFF2" stroke-width="2.3" stroke-linecap="round"/>
+    <text x="56" y="28" fill="#FFFFFF" font-family="Inter,Segoe UI,sans-serif" font-size="23" font-weight="650">ChangeLens</text>
   </g>
-  <g transform="translate(336 400)" font-family="ui-monospace,monospace"><rect width="484" height="84" rx="9" fill="#FFFFFF" stroke="#6D6275" stroke-opacity=".13"/><text x="20" y="27" fill="#53636A" font-size="8">DURABLE SOURCE OF TRUTH</text><text x="20" y="55" fill="#433A4C" font-size="13">PostgreSQL · normalized history · field diffs</text><circle cx="453" cy="42" r="15" fill="#71519A" fill-opacity=".09" stroke="#71519A" stroke-opacity=".2"/><path d="m447 42 4 4 8-9" stroke="#71519A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
-  <path d="M437 355v45M719 355v45M1023 355v91H820" stroke="#9A919F" stroke-dasharray="4 4"/>
-  <g transform="translate(54 524)" font-family="ui-monospace,monospace" font-size="10"><text fill="#71519A">✓ SSRF policy</text><text x="165" fill="#71519A">✓ robots.txt</text><text x="307" fill="#71519A">✓ domain pacing</text><text x="482" fill="#71519A">✓ private captures</text><text x="674" fill="#71519A">✓ signed alerts</text><text x="833" fill="#71519A">✓ Prometheus</text></g>
-  <text x="54" y="584" fill="#8A8191" font-family="ui-monospace,monospace" font-size="10">github.com/JMDcore/JMD-ChangeLens</text>
+  <text x="54" y="104" fill="#CFB4E5" font-family="Inter,Segoe UI,sans-serif" font-size="15">A separable runtime for safe, observable web monitoring</text>
+
+  <text x="54" y="181" fill="#201824" font-family="Inter,Segoe UI,sans-serif" font-size="34" font-weight="650" letter-spacing="-1">From user intent to durable evidence</text>
+
+  <g font-family="Inter,Segoe UI,sans-serif">
+    <g transform="translate(54 226)">
+      <rect width="208" height="126" rx="8" fill="#FFFFFF" stroke="#2A2033" stroke-opacity=".14"/>
+      <circle cx="24" cy="24" r="5" fill="#526F9E"/>
+      <text x="38" y="28" fill="#665D6C" font-size="11" font-weight="600">Product UI</text>
+      <text x="20" y="66" fill="#201824" font-size="19" font-weight="650">Next.js web</text>
+      <text x="20" y="91" fill="#665D6C" font-size="11">Monitor CRUD · editor · diffs</text>
+      <text x="20" y="109" fill="#665D6C" font-size="11">Responsive operations workspace</text>
+    </g>
+    <path d="M278 289H324" stroke="#817987"/><path d="m318 284 7 5-7 5" stroke="#817987"/>
+
+    <g transform="translate(340 226)">
+      <rect width="208" height="126" rx="8" fill="#FFFFFF" stroke="#2A2033" stroke-opacity=".14"/>
+      <circle cx="24" cy="24" r="5" fill="#704A8F"/>
+      <text x="38" y="28" fill="#665D6C" font-size="11" font-weight="600">Control plane</text>
+      <text x="20" y="66" fill="#201824" font-size="19" font-weight="650">Fastify API</text>
+      <text x="20" y="91" fill="#665D6C" font-size="11">Sessions · validation · exports</text>
+      <text x="20" y="109" fill="#665D6C" font-size="11">Monitor and execution contracts</text>
+    </g>
+    <path d="M564 289H610" stroke="#817987"/><path d="m604 284 7 5-7 5" stroke="#817987"/>
+
+    <g transform="translate(626 226)">
+      <rect width="208" height="126" rx="8" fill="#FFFFFF" stroke="#2A2033" stroke-opacity=".14"/>
+      <circle cx="24" cy="24" r="5" fill="#A56B23"/>
+      <text x="38" y="28" fill="#665D6C" font-size="11" font-weight="600">Job state</text>
+      <text x="20" y="66" fill="#201824" font-size="19" font-weight="650">Redis + BullMQ</text>
+      <text x="20" y="91" fill="#665D6C" font-size="11">Schedules · retries · backoff</text>
+      <text x="20" y="109" fill="#665D6C" font-size="11">Per-domain concurrency</text>
+    </g>
+    <path d="M850 289H896" stroke="#817987"/><path d="m890 284 7 5-7 5" stroke="#817987"/>
+
+    <g transform="translate(912 226)">
+      <rect width="234" height="126" rx="8" fill="#FFFFFF" stroke="#2A2033" stroke-opacity=".14"/>
+      <circle cx="24" cy="24" r="5" fill="#B34F5E"/>
+      <text x="38" y="28" fill="#665D6C" font-size="11" font-weight="600">Extraction runtime</text>
+      <text x="20" y="66" fill="#201824" font-size="19" font-weight="650">Crawlee workers</text>
+      <text x="20" y="91" fill="#665D6C" font-size="11">Cheerio · Playwright · captures</text>
+      <text x="20" y="109" fill="#665D6C" font-size="11">robots.txt · SSRF · webhooks</text>
+    </g>
+  </g>
+
+  <g transform="translate(340 405)">
+    <rect width="494" height="92" rx="8" fill="#FFFFFF" stroke="#2A2033" stroke-opacity=".14"/>
+    <circle cx="28" cy="46" r="17" fill="#704A8F" fill-opacity=".1"/>
+    <path d="M21 43h14M21 48h14M24 38h8M24 53h8" stroke="#704A8F" stroke-width="1.6" stroke-linecap="round"/>
+    <text x="58" y="38" fill="#665D6C" font-family="Inter,Segoe UI,sans-serif" font-size="11" font-weight="600">Durable source of truth</text>
+    <text x="58" y="64" fill="#201824" font-family="ui-monospace,SFMono-Regular,monospace" font-size="13">PostgreSQL · snapshots · field diffs · audit trail</text>
+  </g>
+  <path d="M444 352V405M730 352V405M1029 352V451H834" stroke="#817987" stroke-dasharray="4 4"/>
+
+  <g transform="translate(54 546)" font-family="ui-monospace,SFMono-Regular,monospace" font-size="10">
+    <text fill="#704A8F">SSRF policy</text><text x="105" fill="#817987">·</text>
+    <text x="122" fill="#704A8F">robots.txt</text><text x="206" fill="#817987">·</text>
+    <text x="223" fill="#704A8F">domain pacing</text><text x="335" fill="#817987">·</text>
+    <text x="352" fill="#704A8F">private captures</text><text x="482" fill="#817987">·</text>
+    <text x="499" fill="#704A8F">signed alerts</text><text x="604" fill="#817987">·</text>
+    <text x="621" fill="#704A8F">Prometheus</text>
+  </g>
+  <text x="54" y="592" fill="#817987" font-family="ui-monospace,SFMono-Regular,monospace" font-size="10">github.com/JMDcore/JMD-ChangeLens</text>
 </svg>

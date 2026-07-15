@@ -153,8 +153,9 @@ docs/        architecture, security, decisions and publication assets
 - **LocalStack instead of a source-only S3 server.** Development exercises the AWS S3 API with private objects served only through an authenticated, ownership-checked API route.
 - **Webhook first for alerts.** It proves asynchronous delivery, signatures and retry behavior without coupling the MVP to an email provider.
 - **Evidence over decoration.** Dashboard summaries come from API state; unsupported trends, fake worker counts and inactive controls are kept out of the interface.
+- **A documented product language.** The aubergine navigation rail anchors cool work surfaces; plum is reserved for action, focus and selection, while semantic colors retain one stable meaning.
 
-Architecture decisions and trade-offs are expanded in [ADR-001](docs/decisions/001-monorepo-runtime-boundaries.md), the [product scope](docs/PRODUCT.md) and the [product design system](docs/DESIGN_SYSTEM.md).
+Architecture decisions and trade-offs are expanded in [ADR-001](docs/decisions/001-monorepo-runtime-boundaries.md), the [product scope](docs/PRODUCT.md), the machine-readable [design specification](DESIGN.md) and the [design implementation guide](docs/DESIGN_SYSTEM.md).
 
 ## Open-source references
 

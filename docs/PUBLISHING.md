@@ -24,7 +24,7 @@ All screenshots use deterministic snapshot data and controlled demo pages. No th
 
 The profile image is the repository owner's intentionally public portfolio photo. Its local 512×512 copy avoids a runtime dependency on an external image host.
 
-Visual and content conventions are recorded in `docs/DESIGN_SYSTEM.md`. Re-run desktop and mobile end-to-end tests before replacing screenshots.
+Visual and content conventions are recorded in the root `DESIGN.md` and `docs/DESIGN_SYSTEM.md`. The screenshot set, social cover and architecture overlay must use the same aubergine-shell visual language. Re-run desktop and mobile end-to-end tests before replacing screenshots.
 
 ## Suggested LinkedIn post
 
