@@ -55,12 +55,12 @@ export async function buildServer(dependencies: ApiDependencies): Promise<Fastif
     timeWindow: "1 minute",
     ban: 3,
     keyGenerator: (request) => request.authUser?.id ?? request.ip,
-    errorResponseBuilder: (_request, context) => ({
-      error: {
-        code: "RATE_LIMITED",
-        message: `Too many requests. Retry in ${Math.ceil(context.ttl / 1_000)} seconds.`,
-      },
-    }),
+    errorResponseBuilder: (_request, context) =>
+      new AppError(
+        context.statusCode,
+        "RATE_LIMITED",
+        `Too many requests. Retry in ${Math.ceil(context.ttl / 1_000)} seconds.`,
+      ),
   });
 
   app.addHook("preHandler", async (request) => {
