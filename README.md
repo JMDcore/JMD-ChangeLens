@@ -18,20 +18,32 @@ This is not a bulk scraping toolkit or an anti-bot bypass. Its product and secur
 
 ![ChangeLens operational dashboard](docs/assets/screenshots/dashboard.png)
 
+<table>
+  <tr>
+    <td width="50%"><img src="docs/assets/screenshots/editor.png" alt="ChangeLens extraction editor" /></td>
+    <td width="50%"><img src="docs/assets/screenshots/account-settings.png" alt="ChangeLens account and workspace policies" /></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>Page preview, CSS schema and normalized output</sub></td>
+    <td align="center"><sub>Portfolio identity and enforced workspace policies</sub></td>
+  </tr>
+</table>
+
 ## What the MVP demonstrates
 
-| Product capability          | Technical implementation                                            |
-| --------------------------- | ------------------------------------------------------------------- |
-| Visual operations workspace | Next.js App Router, React, responsive dense UI                      |
-| Typed CSS extraction        | Zod contracts, Cheerio, normalized scalar types                     |
-| JavaScript-rendered targets | Crawlee with isolated Playwright jobs                               |
-| Manual and recurring runs   | BullMQ jobs and idempotent Job Schedulers                           |
-| Execution history and diffs | PostgreSQL snapshots, canonical hashes, field-level changes         |
-| Evidence and exports        | Private S3-compatible screenshots, JSON and CSV                     |
-| Change alerts               | HMAC-SHA256 signed webhooks with bounded redirects and retries      |
-| Operational visibility      | Structured logs, health/readiness endpoints, Prometheus metrics     |
-| Secure user boundary        | Argon2id, opaque sessions, strict cookies, CSRF, rate limits        |
-| Responsible target policy   | `robots.txt`, identified user agent, domain leases, SSRF validation |
+| Product capability          | Technical implementation                                                     |
+| --------------------------- | ---------------------------------------------------------------------------- |
+| Visual operations workspace | Next.js App Router, React, responsive dense UI                               |
+| Typed CSS extraction        | Zod contracts, Cheerio, normalized scalar types                              |
+| JavaScript-rendered targets | Crawlee with isolated Playwright jobs                                        |
+| Manual and recurring runs   | BullMQ jobs and idempotent Job Schedulers                                    |
+| Execution history and diffs | PostgreSQL snapshots, canonical hashes, field-level changes                  |
+| Evidence and exports        | Private S3-compatible screenshots, JSON and CSV                              |
+| Change alerts               | HMAC-SHA256 signed webhooks with bounded redirects and retries               |
+| Operational visibility      | Structured logs, health/readiness endpoints, Prometheus metrics              |
+| Secure user boundary        | Argon2id, opaque sessions, strict cookies, CSRF, rate limits                 |
+| Responsible target policy   | `robots.txt`, identified user agent, domain leases, SSRF validation          |
+| Deliberate product design   | Evidence-first operations UI, responsive editor and documented visual system |
 
 The direct in-page element picker, list extraction, pagination, public API keys, email alerts and optional AI assistance are intentionally outside this first release. CSS selectors remain the source of truth; the editor provides a controlled visual mapping experience today.
 
@@ -140,8 +152,9 @@ docs/        architecture, security, decisions and publication assets
 - **Field-level normalized diffs.** Original selectors and extracted values are authoritative. AI is not in the decision path.
 - **LocalStack instead of a source-only S3 server.** Development exercises the AWS S3 API with private objects served only through an authenticated, ownership-checked API route.
 - **Webhook first for alerts.** It proves asynchronous delivery, signatures and retry behavior without coupling the MVP to an email provider.
+- **Evidence over decoration.** Dashboard summaries come from API state; unsupported trends, fake worker counts and inactive controls are kept out of the interface.
 
-Architecture decisions and trade-offs are expanded in [ADR-001](docs/decisions/001-monorepo-runtime-boundaries.md) and the [product scope](docs/PRODUCT.md).
+Architecture decisions and trade-offs are expanded in [ADR-001](docs/decisions/001-monorepo-runtime-boundaries.md), the [product scope](docs/PRODUCT.md) and the [product design system](docs/DESIGN_SYSTEM.md).
 
 ## Open-source references
 

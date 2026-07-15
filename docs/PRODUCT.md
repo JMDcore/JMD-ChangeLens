@@ -21,6 +21,8 @@ A user can:
 9. Export JSON or CSV.
 10. Receive an HMAC-signed webhook only when normalized values change.
 
+The portfolio demo also presents the workspace owner consistently across navigation and settings. Account identity uses a nullable avatar URL with an initials fallback; image upload is outside the MVP.
+
 ## Explicit non-goals for v0.1
 
 - Authenticated or paywalled target browsing.
@@ -41,6 +43,7 @@ These boundaries control delivery risk and make the security posture legible. La
 - A blocked network decision is stored, visible and never silently retried.
 - Controlled demos and product screenshots require no third-party target.
 - The same contracts validate browser input, API input and worker snapshots.
+- Every operational metric shown in the interface is traceable to API or deterministic demo data.
 
 ## Delivery increments
 
