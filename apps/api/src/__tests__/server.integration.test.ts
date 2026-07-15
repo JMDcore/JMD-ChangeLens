@@ -68,6 +68,19 @@ describe("API server integration", () => {
     });
   });
 
+  it("rate limits dependency readiness checks", async () => {
+    const application = await createApplication();
+
+    const allowed = await Promise.all(
+      Array.from({ length: 30 }, () => application.inject({ method: "GET", url: "/api/ready" })),
+    );
+    const limited = await application.inject({ method: "GET", url: "/api/ready" });
+
+    expect(allowed.every((response) => response.statusCode === 200)).toBe(true);
+    expect(limited.statusCode, limited.body).toBe(429);
+    expect(limited.json().error.code).toBe("RATE_LIMITED");
+  });
+
   it("returns consistent security errors and headers", async () => {
     const application = await createApplication();
 
