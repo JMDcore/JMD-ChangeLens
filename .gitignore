@@ -10,7 +10,7 @@ coverage/
 next-env.d.ts
 
 # Runtime data
-storage/
+/storage/
 /screenshots/
 playwright-report/
 test-results/
