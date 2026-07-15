@@ -33,10 +33,21 @@ try {
   await client.db.transaction(async (transaction) => {
     await transaction
       .insert(users)
-      .values({ id: ids.user, name: "José Miguel Díaz", email: "demo@changelens.dev", passwordHash })
+      .values({
+        id: ids.user,
+        name: "José Miguel Díaz",
+        email: "demo@changelens.dev",
+        avatarUrl: "/profile/jose-miguel-diaz.png",
+        passwordHash,
+      })
       .onConflictDoUpdate({
         target: users.email,
-        set: { name: "José Miguel Díaz", passwordHash, updatedAt: now },
+        set: {
+          name: "José Miguel Díaz",
+          avatarUrl: "/profile/jose-miguel-diaz.png",
+          passwordHash,
+          updatedAt: now,
+        },
       });
 
     const [demoUser] = await transaction

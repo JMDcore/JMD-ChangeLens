@@ -6,7 +6,8 @@ const minutesFromNow = (minutes: number) => new Date(Date.now() + minutes * 60_0
 export const demoUser: PublicUser = {
   id: "10000000-0000-4000-8000-000000000001",
   name: "José Miguel Díaz",
-  email: "demo@changelens.dev",
+  email: "jmdcore.dev@gmail.com",
+  avatarUrl: "/profile/jose-miguel-diaz.png",
   createdAt: "2026-07-01T09:00:00.000Z",
 };
 

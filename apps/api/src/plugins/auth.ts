@@ -14,8 +14,20 @@ export const CSRF_COOKIE = "cl_csrf";
 const passwordOptions = { memoryCost: 19_456, timeCost: 2, parallelism: 1, outputLen: 32 };
 const dummyPasswordHash = hash("this-is-not-a-real-user-password", passwordOptions);
 
-function publicUser(user: { id: string; name: string; email: string; createdAt: Date }): AuthenticatedUser {
-  return { id: user.id, name: user.name, email: user.email, createdAt: user.createdAt.toISOString() };
+function publicUser(user: {
+  id: string;
+  name: string;
+  email: string;
+  avatarUrl: string | null;
+  createdAt: Date;
+}): AuthenticatedUser {
+  return {
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    avatarUrl: user.avatarUrl,
+    createdAt: user.createdAt.toISOString(),
+  };
 }
 
 function setSessionCookies(reply: FastifyReply, token: string, csrf: string, dependencies: ApiDependencies): void {
@@ -64,6 +76,7 @@ export async function registerAuthentication(app: FastifyInstance, dependencies:
         id: users.id,
         name: users.name,
         email: users.email,
+        avatarUrl: users.avatarUrl,
         createdAt: users.createdAt,
         lastSeenAt: sessions.lastSeenAt,
       })
@@ -100,7 +113,13 @@ export async function registerAuthentication(app: FastifyInstance, dependencies:
       const [created] = await dependencies.database.db
         .insert(users)
         .values({ name: input.name, email: input.email, passwordHash })
-        .returning({ id: users.id, name: users.name, email: users.email, createdAt: users.createdAt });
+        .returning({
+          id: users.id,
+          name: users.name,
+          email: users.email,
+          avatarUrl: users.avatarUrl,
+          createdAt: users.createdAt,
+        });
       if (!created) throw new AppError(500, "ACCOUNT_CREATION_FAILED", "The account could not be created");
 
       await createSession(request, reply, created.id, dependencies);
