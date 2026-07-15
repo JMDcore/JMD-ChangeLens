@@ -1,0 +1,32 @@
+# Dependencies and build output
+node_modules/
+.pnpm-store/
+.turbo/
+dist/
+.next/
+out/
+coverage/
+*.tsbuildinfo
+
+# Runtime data
+storage/
+/screenshots/
+playwright-report/
+test-results/
+
+# Local configuration
+.env
+.env.*
+!.env.example
+*.local
+
+# Logs and editor files
+*.log
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Crawlee local storage
+apps/worker/storage/
+packages/scraper/storage/

@@ -1,0 +1,12 @@
+.git
+.github
+.next
+.turbo
+coverage
+node_modules
+playwright-report
+storage
+test-results
+**/*.log
+.env*
+!.env.example

@@ -1,0 +1,41 @@
+{
+  "name": "@changelens/database",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./schema": {
+      "types": "./dist/schema.d.ts",
+      "import": "./dist/schema.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts src/schema.ts src/migrate.ts --format esm --clean && tsc -p tsconfig.json --declaration --emitDeclarationOnly --outDir dist --noEmit false",
+    "clean": "rm -rf dist coverage",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "tsx src/migrate.ts",
+    "db:seed": "tsx src/seed.ts",
+    "lint": "eslint src",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "test:coverage": "vitest run --coverage --passWithNoTests"
+  },
+  "dependencies": {
+    "@changelens/contracts": "workspace:*",
+    "drizzle-orm": "0.45.2",
+    "pg": "8.22.0"
+  },
+  "devDependencies": {
+    "@node-rs/argon2": "2.0.2",
+    "@types/pg": "8.15.6",
+    "drizzle-kit": "0.31.10",
+    "tsup": "8.5.1",
+    "tsx": "4.23.1",
+    "typescript": "6.0.3",
+    "vitest": "4.1.10"
+  }
+}

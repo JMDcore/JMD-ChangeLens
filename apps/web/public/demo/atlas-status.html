@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Atlas status — ChangeLens demo</title>
+    <style>
+      body {
+        background: #f4f6f4;
+        color: #1c2824;
+        font-family: system-ui;
+        margin: 0;
+        padding: 7vw;
+      }
+      main {
+        max-width: 780px;
+        margin: auto;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+      }
+      h1 {
+        font-size: 32px;
+      }
+      .state {
+        background: #dff2e9;
+        border: 1px solid #b8ddcd;
+        border-radius: 8px;
+        color: #287454;
+        margin: 30px 0;
+        padding: 18px;
+      }
+      .service {
+        border-top: 1px solid #d9dedb;
+        display: flex;
+        justify-content: space-between;
+        padding: 18px 0;
+      }
+      .ok {
+        color: #287454;
+      }
+      .latency {
+        font-family: monospace;
+        color: #718078;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header><strong>ATLAS CLOUD</strong><span>Service status</span></header>
+      <h1>All systems operational</h1>
+      <div class="state">Operational</div>
+      <div class="service">
+        <span>API gateway</span><span class="ok">Operational</span><span class="latency">82 ms</span>
+      </div>
+      <div class="service">
+        <span>Data pipeline</span><span class="ok">Operational</span><span class="latency">116 ms</span>
+      </div>
+      <div class="service">
+        <span>Dashboard</span><span class="ok">Operational</span><span class="latency">94 ms</span>
+      </div>
+    </main>
+  </body>
+</html>

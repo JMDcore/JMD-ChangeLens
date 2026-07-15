@@ -1,0 +1,168 @@
+name: changelens
+
+services:
+  postgres:
+    image: postgres:17.10-alpine3.23
+    environment:
+      POSTGRES_DB: changelens
+      POSTGRES_USER: changelens
+      POSTGRES_PASSWORD: changelens
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U changelens -d changelens"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  redis:
+    image: redis:8.8.0-alpine3.23
+    command: ["redis-server", "--appendonly", "yes", "--requirepass", "changelens-dev"]
+    ports:
+      - "127.0.0.1:6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "changelens-dev", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  localstack:
+    image: localstack/localstack:2026.06.2
+    environment:
+      SERVICES: s3
+      DEFAULT_REGION: eu-west-1
+      DEBUG: 0
+      PERSISTENCE: 1
+    ports:
+      - "127.0.0.1:4566:4566"
+    volumes:
+      - localstack_data:/var/lib/localstack
+      - ./infra/localstack/init:/etc/localstack/init/ready.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", 'curl -fsS http://localhost:4566/_localstack/health | grep -q ''"s3": "available"''']
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+
+  api:
+    profiles: ["app"]
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql://changelens:changelens@postgres:5432/changelens
+      REDIS_URL: redis://:changelens-dev@redis:6379/0
+      S3_ENDPOINT: http://localstack:4566
+    ports:
+      - "127.0.0.1:4000:4000"
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+      localstack:
+        condition: service_healthy
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://localhost:4000/api/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+    restart: unless-stopped
+
+  migrate:
+    profiles: ["app"]
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    command: ["node", "node_modules/@changelens/database/dist/migrate.js"]
+    environment:
+      DATABASE_URL: postgresql://changelens:changelens@postgres:5432/changelens
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: "no"
+
+  worker:
+    profiles: ["app"]
+    build:
+      context: .
+      dockerfile: apps/worker/Dockerfile
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql://changelens:changelens@postgres:5432/changelens
+      REDIS_URL: redis://:changelens-dev@redis:6379/0
+      S3_ENDPOINT: http://localstack:4566
+    init: true
+    shm_size: 1gb
+    mem_limit: "${BROWSER_MEMORY_MB:-512}m"
+    cpus: 1.5
+    pids_limit: 256
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      localstack:
+        condition: service_healthy
+    security_opt:
+      - no-new-privileges:true
+      - seccomp:./infra/playwright/seccomp_profile.json
+    cap_drop:
+      - ALL
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://localhost:4001/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 8
+    restart: unless-stopped
+
+  web:
+    profiles: ["app"]
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    environment:
+      BACKEND_INTERNAL_URL: http://api:4000
+      NEXT_PUBLIC_API_BASE_URL: /api
+    ports:
+      - "127.0.0.1:3000:3000"
+    depends_on:
+      api:
+        condition: service_healthy
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://localhost:3000').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+    restart: unless-stopped
+
+volumes:
+  localstack_data:
+  postgres_data:
+  redis_data:

@@ -1,0 +1,32 @@
+{
+  "name": "@changelens/scraper",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --clean && tsc -p tsconfig.json --declaration --emitDeclarationOnly --outDir dist --noEmit false",
+    "clean": "rm -rf dist coverage",
+    "lint": "eslint src",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage"
+  },
+  "dependencies": {
+    "@changelens/contracts": "workspace:*",
+    "crawlee": "3.17.0",
+    "ipaddr.js": "2.4.0",
+    "playwright": "1.61.1"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "4.1.10",
+    "tsup": "8.5.1",
+    "typescript": "6.0.3",
+    "vitest": "4.1.10"
+  }
+}

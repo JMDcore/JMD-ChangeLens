@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Lumina desk lamp — controlled ChangeLens demo</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: #f2efe8;
+        color: #1d2527;
+        font-family: Inter, system-ui, sans-serif;
+      }
+      .notice {
+        background: #182321;
+        color: #d8eee8;
+        font-size: 10px;
+        letter-spacing: 0.04em;
+        padding: 8px;
+        text-align: center;
+      }
+      .nav {
+        align-items: center;
+        border-bottom: 1px solid #dad7d0;
+        display: flex;
+        height: 54px;
+        justify-content: space-between;
+        padding: 0 6vw;
+      }
+      .logo {
+        font-size: 16px;
+        font-weight: 720;
+        letter-spacing: -0.6px;
+      }
+      .logo i {
+        color: #598c7b;
+        font-style: normal;
+      }
+      .links {
+        display: flex;
+        gap: 22px;
+        color: #707774;
+        font-size: 9px;
+      }
+      .cart {
+        border: 1px solid #c8cbc5;
+        border-radius: 20px;
+        padding: 7px 12px;
+      }
+      .product {
+        display: grid;
+        gap: 7vw;
+        grid-template-columns: 1.08fr 0.92fr;
+        margin: 0 auto;
+        max-width: 1100px;
+        padding: 5vw 6vw;
+      }
+      .gallery {
+        background: linear-gradient(145deg, #e4e0d6, #f7f4ed);
+        border-radius: 5px;
+        min-height: 390px;
+        position: relative;
+      }
+      .lamp {
+        height: 300px;
+        left: 50%;
+        position: absolute;
+        top: 48%;
+        transform: translate(-50%, -50%);
+        width: 230px;
+      }
+      .shade {
+        background: linear-gradient(145deg, #263330, #151e1d);
+        border-radius: 100px 100px 14px 14px;
+        height: 95px;
+        left: 24px;
+        position: absolute;
+        top: 15px;
+        transform: rotate(-9deg);
+        width: 170px;
+      }
+      .neck {
+        background: #263330;
+        border-radius: 8px;
+        height: 165px;
+        left: 115px;
+        position: absolute;
+        top: 90px;
+        transform: rotate(13deg);
+        width: 10px;
+      }
+      .base {
+        background: linear-gradient(180deg, #35423e, #17201f);
+        border-radius: 50%;
+        bottom: 12px;
+        height: 31px;
+        left: 43px;
+        position: absolute;
+        width: 165px;
+      }
+      .glow {
+        background: radial-gradient(circle, rgba(255, 218, 143, 0.38), transparent 68%);
+        height: 230px;
+        left: -5px;
+        position: absolute;
+        top: 70px;
+        width: 230px;
+      }
+      .thumbs {
+        bottom: 14px;
+        display: flex;
+        gap: 6px;
+        left: 14px;
+        position: absolute;
+      }
+      .thumbs span {
+        background: #d4d0c7;
+        border: 1px solid #c4c0b8;
+        border-radius: 3px;
+        height: 35px;
+        width: 35px;
+      }
+      .thumbs span:first-child {
+        border-color: #567d71;
+      }
+      .copy {
+        padding-top: 18px;
+      }
+      .eyebrow {
+        color: #6b7e78;
+        font-size: 8px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+      .copy h1 {
+        font-size: 37px;
+        font-weight: 540;
+        letter-spacing: -2px;
+        line-height: 1.02;
+        margin: 13px 0;
+      }
+      .rating {
+        color: #92835d;
+        font-size: 9px;
+      }
+      .price {
+        font-family: ui-monospace, monospace;
+        font-size: 24px;
+        margin: 25px 0 5px;
+      }
+      .old {
+        color: #9b9b94;
+        font-size: 10px;
+        text-decoration: line-through;
+      }
+      .stock {
+        align-items: center;
+        color: #9b643d;
+        display: flex;
+        font-size: 9px;
+        gap: 6px;
+        margin: 20px 0;
+      }
+      .stock:before {
+        background: #d28a55;
+        border-radius: 50%;
+        content: "";
+        height: 6px;
+        width: 6px;
+      }
+      .description {
+        color: #707774;
+        font-size: 10px;
+        line-height: 1.7;
+        max-width: 390px;
+      }
+      .finish {
+        border-top: 1px solid #d9d5cd;
+        margin-top: 22px;
+        padding-top: 18px;
+      }
+      .finish strong {
+        font-size: 9px;
+      }
+      .swatches {
+        display: flex;
+        gap: 8px;
+        margin-top: 10px;
+      }
+      .swatches span {
+        border: 3px solid #f2efe8;
+        border-radius: 50%;
+        box-shadow: 0 0 0 1px #bbb;
+        height: 20px;
+        width: 20px;
+      }
+      .swatches span:nth-child(1) {
+        background: #1e2926;
+        box-shadow: 0 0 0 1px #45695e;
+      }
+      .swatches span:nth-child(2) {
+        background: #d5c7ac;
+      }
+      .swatches span:nth-child(3) {
+        background: #a16c4e;
+      }
+      .buy {
+        background: #21312d;
+        border: 0;
+        border-radius: 3px;
+        color: #f2f6f4;
+        font-size: 10px;
+        margin-top: 25px;
+        padding: 14px;
+        width: 100%;
+      }
+      .meta {
+        display: flex;
+        gap: 18px;
+        margin-top: 15px;
+      }
+      .meta span {
+        color: #7a817e;
+        font-size: 7.5px;
+      }
+      @media (max-width: 650px) {
+        .links {
+          display: none;
+        }
+        .product {
+          grid-template-columns: 1fr;
+        }
+        .gallery {
+          min-height: 330px;
+        }
+        .copy h1 {
+          font-size: 30px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="notice">CONTROLLED DEMO TARGET · SAFE FOR REPEATABLE EXTRACTION</div>
+    <nav class="nav">
+      <div class="logo">Forma<i>Foundry</i></div>
+      <div class="links"><span>Lighting</span><span>Objects</span><span>Journal</span><span>About</span></div>
+      <span class="cart">Bag · 0</span>
+    </nav>
+    <main class="product">
+      <section class="gallery">
+        <div class="glow"></div>
+        <div class="lamp">
+          <div class="shade"></div>
+          <div class="neck"></div>
+          <div class="base"></div>
+        </div>
+        <div class="thumbs"><span></span><span></span><span></span></div>
+      </section>
+      <section class="copy">
+        <span class="eyebrow">Task lighting · Edition 04</span>
+        <h1>Lumina desk lamp</h1>
+        <span class="rating">★★★★★ &nbsp; 4.9 · 38 reviews</span>
+        <div class="price" data-price="109.00">€109.00</div>
+        <div class="old">€129.00</div>
+        <div class="stock" data-stock="Only 4 left">Only 4 left — ships tomorrow</div>
+        <p class="description">
+          A precisely balanced task light in powder-coated aluminium. Warm, focused illumination with a tactile dimmer
+          and a weighted recycled-steel base.
+        </p>
+        <div class="finish">
+          <strong>Finish · Forest black</strong>
+          <div class="swatches"><span></span><span></span><span></span></div>
+        </div>
+        <button class="buy">Add to bag</button>
+        <div class="meta"><span>Free EU delivery</span><span>5-year warranty</span><span>30-day returns</span></div>
+      </section>
+    </main>
+  </body>
+</html>

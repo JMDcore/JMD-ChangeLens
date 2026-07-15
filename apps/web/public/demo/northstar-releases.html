@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Northstar releases — ChangeLens demo</title>
+    <style>
+      body {
+        background: #111716;
+        color: #e8efec;
+        font-family: system-ui;
+        margin: 0;
+        padding: 7vw;
+      }
+      main {
+        max-width: 720px;
+        margin: auto;
+      }
+      .tag {
+        color: #75dabd;
+        font: 10px monospace;
+      }
+      h1 {
+        font-size: 42px;
+        letter-spacing: -2px;
+      }
+      .release {
+        border-left: 1px solid #31413d;
+        margin-left: 8px;
+        padding: 0 0 35px 30px;
+        position: relative;
+      }
+      .release:before {
+        background: #75dabd;
+        border-radius: 50%;
+        content: "";
+        height: 9px;
+        left: -5px;
+        position: absolute;
+        top: 5px;
+        width: 9px;
+      }
+      .release h2 {
+        font-size: 17px;
+        margin: 0 0 8px;
+      }
+      .release time {
+        color: #71817c;
+        font: 9px monospace;
+      }
+      .release p {
+        color: #9caaa6;
+        font-size: 12px;
+        line-height: 1.6;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <span class="tag">CONTROLLED RELEASE FEED</span>
+      <h1>Northstar release notes</h1>
+      <article class="release">
+        <h2>Version 2.8.0</h2>
+        <time datetime="2026-07-12">12 JUL 2026</time>
+        <p>Signed webhooks, reusable extraction templates and a redesigned run explorer.</p>
+      </article>
+      <article class="release">
+        <h2>Version 2.7.3</h2>
+        <time datetime="2026-06-28">28 JUN 2026</time>
+        <p>Improved redirect validation and reduced browser startup latency.</p>
+      </article>
+    </main>
+  </body>
+</html>

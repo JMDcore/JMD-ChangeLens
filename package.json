@@ -1,0 +1,46 @@
+{
+  "name": "changelens",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Visual web data extraction and change monitoring, built for safe and observable automation.",
+  "author": "José Miguel Díaz <jmdcore.dev@gmail.com>",
+  "license": "MIT",
+  "packageManager": "pnpm@11.7.0",
+  "engines": {
+    "node": ">=22 <27",
+    "pnpm": ">=11"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "clean": "turbo run clean && rm -rf .turbo node_modules",
+    "dev": "turbo run dev --parallel",
+    "dev:api": "pnpm --filter @changelens/api dev",
+    "dev:web": "pnpm --filter @changelens/web dev",
+    "dev:worker": "pnpm --filter @changelens/worker dev",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "test:coverage": "turbo run test:coverage",
+    "test:e2e": "playwright test --config tests/e2e/playwright.config.ts",
+    "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm build",
+    "audit": "pnpm audit --prod --audit-level high",
+    "db:generate": "pnpm --filter @changelens/database db:generate",
+    "db:migrate": "pnpm --filter @changelens/database db:migrate",
+    "db:seed": "pnpm --filter @changelens/database db:seed",
+    "services:up": "docker compose up -d postgres redis localstack",
+    "services:down": "docker compose down"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.39.5",
+    "@types/node": "26.1.1",
+    "@playwright/test": "1.61.1",
+    "eslint": "9.39.5",
+    "globals": "17.7.0",
+    "prettier": "3.9.5",
+    "turbo": "2.10.5",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.64.0"
+  }
+}

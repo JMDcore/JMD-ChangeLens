@@ -1,0 +1,10 @@
+{
+  "name": "ChangeLens",
+  "short_name": "ChangeLens",
+  "description": "Safe, observable web change monitoring.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080b10",
+  "theme_color": "#080b10",
+  "icons": [{ "src": "/brand/mark.svg", "sizes": "any", "type": "image/svg+xml" }]
+}
