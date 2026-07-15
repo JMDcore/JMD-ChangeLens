@@ -83,7 +83,6 @@ export function AppShell({ children }: { children: ReactNode }) {
         </div>
 
         <nav className="primary-nav" aria-label="Main navigation">
-          {!collapsed && <span className="nav-section-label">Operations</span>}
           {navigation.map(({ href, label, icon: Icon }) => (
             <Link
               href={href}
@@ -96,7 +95,6 @@ export function AppShell({ children }: { children: ReactNode }) {
               {!collapsed && <span>{label}</span>}
             </Link>
           ))}
-          {!collapsed && <span className="nav-section-label secondary-label">Manage</span>}
           <Link
             href="/settings"
             title={collapsed ? "Settings" : undefined}
@@ -183,12 +181,10 @@ export function AppShell({ children }: { children: ReactNode }) {
 }
 
 export function PageHeader({
-  eyebrow,
   title,
   description,
   actions,
 }: {
-  eyebrow?: string;
   title: string;
   description?: string;
   actions?: ReactNode;
@@ -196,7 +192,6 @@ export function PageHeader({
   return (
     <div className="page-header">
       <div>
-        {eyebrow && <span className="eyebrow">{eyebrow}</span>}
         <h1>{title}</h1>
         {description && <p>{description}</p>}
       </div>

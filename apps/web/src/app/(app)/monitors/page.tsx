@@ -35,7 +35,6 @@ export default function MonitorsPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Extraction fleet"
         title="Monitors"
         description="Configure targets, extraction rules and execution schedules from one operational view."
         actions={

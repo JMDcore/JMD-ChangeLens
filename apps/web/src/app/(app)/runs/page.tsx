@@ -44,7 +44,6 @@ export default function RunsPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Job explorer"
         title="Execution history"
         description="Inspect background jobs, renderers, retries, timings, changes and blocked decisions."
         actions={

@@ -1,0 +1,10 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": ["apps/web/src/app/globals.css"],
+    "ignoreValues": [],
+    "designSystem": {
+      "enabled": false
+    }
+  }
+}

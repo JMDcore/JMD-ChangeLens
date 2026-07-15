@@ -39,7 +39,6 @@ export default function SettingsPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Workspace settings"
         title="Account and policies"
         description="Identity, security, retention and delivery defaults for this personal workspace."
       />

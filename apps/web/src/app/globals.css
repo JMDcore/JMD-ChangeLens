@@ -69,20 +69,9 @@ button {
   background: rgba(112, 225, 193, 0.25);
 }
 
-::-webkit-scrollbar {
-  height: 8px;
-  width: 8px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #26313a;
-  border-radius: 10px;
-}
-
 .app-frame {
   min-height: 100vh;
   padding-left: var(--sidebar);
-  transition: padding 180ms ease;
 }
 
 .app-frame.is-collapsed {

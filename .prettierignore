@@ -7,3 +7,5 @@ packages/database/drizzle/meta
 playwright-report
 pnpm-lock.yaml
 test-results
+.agents
+.codex

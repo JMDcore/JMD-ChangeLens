@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 test("dashboard exposes the operational state", async ({ page, isMobile }) => {
   await page.goto("/");
 
-  await expect(page.getByRole("heading", { name: "Web monitoring at a glance" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Monitoring overview" })).toBeVisible();
   await expect(page.getByText("Lumina desk lamp").first()).toBeVisible();
   await expect(page.getByRole("heading", { name: "Queue activity" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Monitor health" })).toBeVisible();

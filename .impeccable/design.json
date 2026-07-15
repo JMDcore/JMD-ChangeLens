@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-15T17:12:52Z",
+  "title": "Design System: ChangeLens",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Operational Plum",
+        "canonical": "#704a8f",
+        "tonalRamp": ["#24182d", "#3a264b", "#513568", "#704a8f", "#8d68a8", "#ad8fc1", "#cfb9dc", "#f1eaf5"]
+      },
+      "navigation": {
+        "role": "neutral",
+        "displayName": "Aubergine Rail",
+        "canonical": "#251b2d",
+        "tonalRamp": ["#160f1b", "#251b2d", "#3d3045", "#5a4d62", "#796c80", "#9b90a1", "#c2b9c6", "#eeeaf0"]
+      },
+      "canvas": {
+        "role": "neutral",
+        "displayName": "Cool Canvas",
+        "canonical": "#f6f6f8",
+        "tonalRamp": ["#202024", "#414146", "#65656b", "#898990", "#aeafb5", "#d0d0d5", "#e8e8eb", "#f6f6f8"]
+      }
+    },
+    "typographyMeta": {
+      "headline": { "displayName": "Page headline", "purpose": "One fixed-size title per product screen." },
+      "body": { "displayName": "Product body", "purpose": "Readable instructions and supporting content." },
+      "label": { "displayName": "Operational label", "purpose": "Controls, table labels and metadata." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "state-fast", "value": "120ms ease-out", "purpose": "Hover, focus and compact state feedback only." }
+    ],
+    "breakpoints": [
+      { "name": "mobile", "value": "620px" },
+      { "name": "shell", "value": "860px" },
+      { "name": "dashboard", "value": "1180px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The single dominant action within a local decision point.",
+      "html": "<button class=\"ds-button-primary\">New monitor</button>",
+      "css": ".ds-button-primary { background:#704a8f; border:1px solid #704a8f; border-radius:6px; color:#fff; font:600 12.5px Inter,ui-sans-serif,sans-serif; height:40px; padding:0 15px; } .ds-button-primary:hover { background:#5f3d7b; border-color:#5f3d7b; } .ds-button-primary:focus-visible { outline:2px solid #8a63a7; outline-offset:2px; }"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "description": "A quiet white field with an explicit focus treatment.",
+      "html": "<input class=\"ds-input\" value=\"https://jmdcore.com/\" aria-label=\"Public target URL\" />",
+      "css": ".ds-input { background:#fff; border:1px solid rgba(42,32,51,.22); border-radius:6px; color:#453b4a; font:400 12px Inter,ui-sans-serif,sans-serif; height:40px; padding:0 12px; width:280px; } .ds-input:focus { border-color:#704a8f; outline:2px solid rgba(112,74,143,.16); outline-offset:1px; }"
+    },
+    {
+      "name": "Active Navigation Item",
+      "kind": "nav",
+      "description": "A solid light selection inside the aubergine rail.",
+      "html": "<a class=\"ds-nav-active\" href=\"#\">Overview</a>",
+      "css": ".ds-nav-active { align-items:center; background:#fff; border-radius:6px; color:#33223f; display:flex; font:600 13px Inter,ui-sans-serif,sans-serif; min-height:42px; padding:0 12px; text-decoration:none; width:180px; } .ds-nav-active:focus-visible { outline:2px solid #cfb4e5; outline-offset:2px; }"
+    },
+    {
+      "name": "Status Label",
+      "kind": "chip",
+      "description": "Written state reinforced by semantic color.",
+      "html": "<span class=\"ds-status\">Healthy</span>",
+      "css": ".ds-status { background:#edf4ee; border:1px solid #cbdccc; border-radius:4px; color:#3f704a; display:inline-flex; font:600 10.5px Inter,ui-sans-serif,sans-serif; line-height:24px; padding:0 9px; }"
+    },
+    {
+      "name": "Operational Panel",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "A flat evidence container separated by a quiet divider.",
+      "html": "<section class=\"ds-panel\"><strong>Recent runs</strong><p>Background execution timeline</p></section>",
+      "css": ".ds-panel { background:#fff; border:1px solid rgba(42,32,51,.12); border-radius:8px; color:#201824; font:400 14px Inter,ui-sans-serif,sans-serif; padding:20px; width:280px; } .ds-panel strong { display:block; font-weight:650; } .ds-panel p { color:#665d6c; font-size:12px; margin:4px 0 0; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Operations Ledger",
+    "overview": "ChangeLens is a dependable working instrument: calm enough to scan for hours, exact enough to trust when something fails, and distinctive without inventing unfamiliar controls.",
+    "keyCharacteristics": [
+      "Evidence-first and visibly operational",
+      "Dense but readable at normal zoom",
+      "Restrained plum identity with semantic state colors",
+      "Flat surfaces and standard affordances"
+    ],
+    "rules": [
+      {
+        "name": "The One Accent Rule",
+        "body": "Plum occupies less than ten percent of the work area and always communicates action, focus or selection.",
+        "section": "colors"
+      },
+      {
+        "name": "The Readable Density Rule",
+        "body": "Dense does not mean tiny; persistent interface text stays at 11px or larger.",
+        "section": "typography"
+      },
+      {
+        "name": "The Border-or-Shadow Rule",
+        "body": "A component may use a quiet border or a compact shadow, never both as decoration.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Use the aubergine rail as the identity anchor and keep the work canvas light.",
+      "Reserve plum for primary actions, focus and current selection.",
+      "Use tables, dividers and spatial grouping before introducing another card."
+    ],
+    "donts": [
+      "Don't use purple gradients, glow, glassmorphism or decorative background grids.",
+      "Don't repeat tiny uppercase tracked eyebrows.",
+      "Don't use colored side stripes on cards, rows, alerts or selected fields."
+    ]
+  }
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import { AlertTriangle, ArrowRight, CheckCircle2, Clock3, PauseCircle, Plus, RefreshCw, Workflow } from "lucide-react";
+import { AlertTriangle, ArrowRight, CheckCircle2, Clock3, PauseCircle, Plus, RefreshCw } from "lucide-react";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 
@@ -38,9 +38,8 @@ export default function DashboardPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Workspace overview"
-        title="Web monitoring at a glance"
-        description="Review extraction health, detected changes and background activity across your public targets."
+        title="Monitoring overview"
+        description="Health, changes and background activity across your public targets."
         actions={
           <>
             <button className="button button-quiet" onClick={load} disabled={refreshing}>
@@ -62,14 +61,9 @@ export default function DashboardPage() {
         <>
           <section className="kpi-rail" aria-label="Key metrics">
             <div>
-              <span className="kpi-icon">
-                <Workflow size={17} />
-              </span>
-              <div>
-                <small>Active monitors</small>
-                <strong>{dashboard.overview.monitorCount - dashboard.overview.pausedCount}</strong>
-                <span className="metric-note">{dashboard.overview.monitorCount} configured</span>
-              </div>
+              <small>Active monitors</small>
+              <strong>{dashboard.overview.monitorCount - dashboard.overview.pausedCount}</strong>
+              <span className="metric-note">{dashboard.overview.monitorCount} configured</span>
             </div>
             <div>
               <small>Success rate · 24h</small>

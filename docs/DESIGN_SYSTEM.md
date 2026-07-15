@@ -6,8 +6,8 @@ ChangeLens is designed as an operations workspace, not a marketing dashboard. Th
 
 1. **Evidence over decoration.** Every number shown in an operational view comes from the dashboard API or deterministic demo snapshot. ChangeLens does not invent trends, worker counts, health percentages or change previews to fill space.
 2. **Dense, not cramped.** Tables and three-pane tools remain information-rich, while 12–14 px interface type, clear grouping and consistent spacing keep them scannable.
-3. **One functional accent.** Plum identifies primary actions and active navigation. Green, amber, red and blue are reserved for semantic status.
-4. **Light, editorial surfaces.** Warm whites, ink typography and quiet borders replace glow, glass, ornamental gradients and the familiar dark “developer dashboard” aesthetic. Depth comes from hierarchy rather than effects.
+3. **One functional accent.** Plum identifies primary actions, focus and current selection. Green, amber, red and blue are reserved for semantic status.
+4. **A grounded product shell.** A solid aubergine navigation rail anchors cool white work surfaces. Glow, glass, ornamental gradients and wide decorative shadows are prohibited; depth comes from contrast, dividers and hierarchy.
 5. **Technical detail where it helps.** Monospace is used for selectors, identifiers, logs and structured output—not for ordinary labels or body copy.
 6. **No dead affordances.** Search, notification and system controls are only shown when they perform a real task. Static security context is presented as context, not as an interactive control.
 
@@ -17,16 +17,17 @@ The product theme lives in `apps/web/src/app/product-theme.css`. It is loaded af
 
 | Role           | Token            | Value     | Use                                  |
 | -------------- | ---------------- | --------- | ------------------------------------ |
-| Canvas         | `--bg`           | `#f5f3f7` | Application background               |
+| Navigation     | —                | `#251b2d` | Persistent navigation and identity   |
+| Canvas         | `--bg`           | `#f6f6f8` | Application background               |
 | Surface        | `--panel`        | `#ffffff` | Panels, tables and editor panes      |
-| Raised surface | `--panel-strong` | `#f4f1f7` | Hover and nested controls            |
-| Primary text   | `--text`         | `#241d2d` | Page and section headings            |
-| Secondary text | `--muted`        | `#72697b` | Supporting content                   |
-| Accent         | `--mint`         | `#71519a` | Primary action and current selection |
+| Raised surface | `--panel-strong` | `#f4f3f6` | Hover and nested controls            |
+| Primary text   | `--text`         | `#201824` | Page and section headings            |
+| Secondary text | `--muted`        | `#665d6c` | Supporting content                   |
+| Accent         | `--mint`         | `#704a8f` | Action, focus and selection          |
 | Warning        | `--amber`        | `#a56b23` | Changed or delayed state             |
 | Failure        | `--red`          | `#b34f5e` | Failed, blocked or destructive state |
 
-Spacing follows a practical 4 px base. Panels use a restrained 5 px radius and operational labels use 3 px corners instead of decorative pills. Shadows are intentionally omitted from the main workspace.
+Spacing follows a practical 4 px base. Panels use a restrained 8 px radius, controls use 6 px and operational labels use 4 px instead of decorative pills. Shadows are intentionally omitted from the main workspace. The machine-readable source of truth lives in the root `DESIGN.md` and `.impeccable/design.json`.
 
 ## Information hierarchy
 
@@ -67,7 +68,7 @@ Before publication:
 
 - Interactive icons have accessible names.
 - Status is communicated with text and icon/color, never color alone.
-- Focus behavior remains native and keyboard-compatible.
+- Focus is visible on links, buttons and fields, with a reduced-motion fallback for every animation.
 - Body and control text targets readable sizes at normal zoom.
 - Responsive layouts preserve content order and do not depend on hover.
 
