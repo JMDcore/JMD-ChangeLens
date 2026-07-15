@@ -68,6 +68,7 @@ git clone https://github.com/JMDcore/JMD-ChangeLens.git
 cd JMD-ChangeLens
 cp .env.example .env
 pnpm install
+pnpm exec playwright install chromium
 pnpm services:up
 pnpm db:migrate
 pnpm db:seed
