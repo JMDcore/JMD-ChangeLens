@@ -8,7 +8,7 @@
     <a href="https://github.com/JMDcore/JMD-ChangeLens/actions/workflows/codeql.yml"><img alt="CodeQL" src="https://img.shields.io/github/actions/workflow/status/JMDcore/JMD-ChangeLens/codeql.yml?branch=main&style=flat-square&label=CodeQL"></a>
     <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-strict-3178C6?style=flat-square">
     <img alt="Node.js" src="https://img.shields.io/badge/Node.js-24-5FA04E?style=flat-square">
-    <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/license-MIT-70e1c1?style=flat-square"></a>
+    <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/license-MIT-68468c?style=flat-square"></a>
   </p>
 </div>
 

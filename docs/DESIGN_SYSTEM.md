@@ -6,8 +6,8 @@ ChangeLens is designed as an operations workspace, not a marketing dashboard. Th
 
 1. **Evidence over decoration.** Every number shown in an operational view comes from the dashboard API or deterministic demo snapshot. ChangeLens does not invent trends, worker counts, health percentages or change previews to fill space.
 2. **Dense, not cramped.** Tables and three-pane tools remain information-rich, while 12–14 px interface type, clear grouping and consistent spacing keep them scannable.
-3. **One functional accent.** Teal identifies primary actions, active navigation and healthy states. Amber, red and blue are reserved for semantic status.
-4. **Solid surfaces.** Neutral charcoal surfaces and quiet borders replace glow, glass and ornamental gradients. Depth comes from hierarchy rather than effects.
+3. **One functional accent.** Plum identifies primary actions and active navigation. Green, amber, red and blue are reserved for semantic status.
+4. **Light, editorial surfaces.** Warm whites, ink typography and quiet borders replace glow, glass, ornamental gradients and the familiar dark “developer dashboard” aesthetic. Depth comes from hierarchy rather than effects.
 5. **Technical detail where it helps.** Monospace is used for selectors, identifiers, logs and structured output—not for ordinary labels or body copy.
 6. **No dead affordances.** Search, notification and system controls are only shown when they perform a real task. Static security context is presented as context, not as an interactive control.
 
@@ -15,18 +15,18 @@ ChangeLens is designed as an operations workspace, not a marketing dashboard. Th
 
 The product theme lives in `apps/web/src/app/product-theme.css`. It is loaded after the original component stylesheet and forms a deliberate migration layer: component markup remains stable while the portfolio release can be reviewed as one coherent visual system.
 
-| Role           | Token            | Value     | Use                                      |
-| -------------- | ---------------- | --------- | ---------------------------------------- |
-| Canvas         | `--bg`           | `#0c0f13` | Application background                   |
-| Surface        | `--panel`        | `#12171d` | Panels, tables and editor panes          |
-| Raised surface | `--panel-strong` | `#171d24` | Hover and nested controls                |
-| Primary text   | `--text`         | `#eef2f3` | Page and section headings                |
-| Secondary text | `--muted`        | `#8c999f` | Supporting content                       |
-| Accent         | `--mint`         | `#55c8a7` | Primary action, selection, healthy state |
-| Warning        | `--amber`        | `#dda85a` | Changed or delayed state                 |
-| Failure        | `--red`          | `#e87882` | Failed, blocked or destructive state     |
+| Role           | Token            | Value     | Use                                  |
+| -------------- | ---------------- | --------- | ------------------------------------ |
+| Canvas         | `--bg`           | `#f5f3f7` | Application background               |
+| Surface        | `--panel`        | `#ffffff` | Panels, tables and editor panes      |
+| Raised surface | `--panel-strong` | `#f4f1f7` | Hover and nested controls            |
+| Primary text   | `--text`         | `#241d2d` | Page and section headings            |
+| Secondary text | `--muted`        | `#72697b` | Supporting content                   |
+| Accent         | `--mint`         | `#71519a` | Primary action and current selection |
+| Warning        | `--amber`        | `#a56b23` | Changed or delayed state             |
+| Failure        | `--red`          | `#b34f5e` | Failed, blocked or destructive state |
 
-Spacing follows a practical 4 px base. Panels use an 8 px radius; pills alone use fully rounded corners. Shadows are intentionally omitted from the main workspace.
+Spacing follows a practical 4 px base. Panels use a restrained 5 px radius and operational labels use 3 px corners instead of decorative pills. Shadows are intentionally omitted from the main workspace.
 
 ## Information hierarchy
 
