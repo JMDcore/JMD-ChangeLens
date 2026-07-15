@@ -4,7 +4,7 @@
   "description": "Safe, observable web change monitoring.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#080b10",
-  "theme_color": "#080b10",
+  "background_color": "#f5f3f7",
+  "theme_color": "#f5f3f7",
   "icons": [{ "src": "/brand/mark.svg", "sizes": "any", "type": "image/svg+xml" }]
 }
