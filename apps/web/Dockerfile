@@ -1,4 +1,4 @@
-FROM node:24-alpine AS build
+FROM node:26-alpine AS build
 
 WORKDIR /workspace
 RUN npm install --global pnpm@11.7.0
@@ -6,7 +6,7 @@ RUN npm install --global pnpm@11.7.0
 COPY . .
 RUN pnpm install --frozen-lockfile && pnpm --filter @changelens/web... build
 
-FROM node:24-alpine AS runtime
+FROM node:26-alpine AS runtime
 
 ENV NODE_ENV=production \
     HOSTNAME=0.0.0.0 \
