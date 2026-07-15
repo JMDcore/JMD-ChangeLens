@@ -21,6 +21,17 @@ test("new monitor editor maps selectors to structured values", async ({ page }) 
 
   await page.getByRole("button", { name: "Run preview" }).click();
   await expect(page.getByText("3/3 fields extracted")).toBeVisible();
+
+  await page.getByRole("button", { name: "Add extraction field" }).click();
+  await page.getByLabel("Key for field 4").fill("github_url");
+  await page.getByLabel("Selector for field 4").fill('a[href="https://github.com/JMDcore"]');
+  await page.getByLabel("Type for field 4").selectOption("url");
+  await page.getByLabel("Attribute for field 4").fill("href");
+  await page.getByLabel("Multiple values").nth(3).check();
+
+  await expect(page.getByLabel("Key for field 4")).toHaveValue("github_url");
+  await expect(page.getByLabel("Attribute for field 4")).toHaveValue("href");
+  await expect(page.getByLabel("Multiple values").nth(3)).toBeChecked();
 });
 
 test("monitor detail renders diff, capture and processing log", async ({ page }) => {

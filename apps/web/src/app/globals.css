@@ -2156,10 +2156,6 @@ button {
   min-width: 0;
   outline: 0;
 }
-.field-card-head code {
-  color: var(--faint);
-  font-size: 6.5px;
-}
 .field-card-head button {
   background: transparent;
   color: #5d696e;
@@ -2211,18 +2207,25 @@ button {
   height: 28px;
   padding: 0 4px;
 }
-.required-toggle {
+.field-toggles {
+  display: flex;
+  gap: 14px;
+  margin-top: 8px;
+}
+.field-toggle {
   align-items: center;
   color: #67767a;
   display: flex;
   font-size: 7.5px;
   gap: 5px;
-  margin-top: 8px;
 }
-.required-toggle input {
+.field-toggle input {
   accent-color: var(--mint);
   height: 11px;
   width: 11px;
+}
+.field-controls input[aria-invalid="true"] {
+  color: var(--red);
 }
 .add-field-button {
   align-items: center;

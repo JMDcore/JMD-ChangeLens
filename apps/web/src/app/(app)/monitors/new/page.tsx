@@ -43,6 +43,7 @@ const initialFields: ExtractionField[] = [
 ];
 
 const previewPage = "/demo/lumina-desk-lamp.html";
+const fieldKeyPattern = /^[a-z][a-z0-9_]*$/;
 
 function wait(milliseconds: number) {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
@@ -66,7 +67,13 @@ export default function NewMonitorPage() {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const validFields = useMemo(() => fields.every((field) => field.key && field.label && field.selector), [fields]);
+  const validFields = useMemo(() => {
+    const keys = fields.map((field) => field.key);
+    return (
+      fields.every((field) => fieldKeyPattern.test(field.key) && field.label && field.selector) &&
+      new Set(keys).size === keys.length
+    );
+  }, [fields]);
 
   function updateField(index: number, patch: Partial<ExtractionField>) {
     setFields((current) => current.map((field, fieldIndex) => (fieldIndex === index ? { ...field, ...patch } : field)));
@@ -241,7 +248,7 @@ export default function NewMonitorPage() {
             {fields.map((field, index) => (
               <div
                 className={`field-card ${activeField === index ? "active" : ""}`}
-                key={`${field.key}-${index}`}
+                key={`field-${index}`}
                 onClick={() => setActiveField(index)}
               >
                 <div className="field-card-head">
@@ -251,7 +258,6 @@ export default function NewMonitorPage() {
                     onChange={(event) => updateField(index, { label: event.target.value })}
                     aria-label={`Label for field ${index + 1}`}
                   />
-                  <code>{field.key}</code>
                   <button
                     onClick={(event) => {
                       event.stopPropagation();
@@ -264,12 +270,15 @@ export default function NewMonitorPage() {
                 </div>
                 <div className="field-controls">
                   <label>
-                    <span>CSS selector</span>
+                    <span>Field key</span>
                     <div>
                       <Code2 size={12} />
                       <input
-                        value={field.selector}
-                        onChange={(event) => updateField(index, { selector: event.target.value })}
+                        value={field.key}
+                        onChange={(event) => updateField(index, { key: event.target.value })}
+                        aria-label={`Key for field ${index + 1}`}
+                        aria-invalid={!fieldKeyPattern.test(field.key)}
+                        spellCheck={false}
                       />
                     </div>
                   </label>
@@ -277,6 +286,7 @@ export default function NewMonitorPage() {
                     <span>Type</span>
                     <select
                       value={field.valueType}
+                      aria-label={`Type for field ${index + 1}`}
                       onChange={(event) =>
                         updateField(index, { valueType: event.target.value as ExtractionField["valueType"] })
                       }
@@ -289,15 +299,50 @@ export default function NewMonitorPage() {
                       <option value="boolean">Boolean</option>
                     </select>
                   </label>
+                  <label>
+                    <span>CSS selector</span>
+                    <div>
+                      <Code2 size={12} />
+                      <input
+                        value={field.selector}
+                        onChange={(event) => updateField(index, { selector: event.target.value })}
+                        aria-label={`Selector for field ${index + 1}`}
+                        spellCheck={false}
+                      />
+                    </div>
+                  </label>
+                  <label>
+                    <span>Attribute</span>
+                    <div>
+                      <Code2 size={12} />
+                      <input
+                        value={field.attribute ?? ""}
+                        placeholder="text"
+                        onChange={(event) => updateField(index, { attribute: event.target.value || null })}
+                        aria-label={`Attribute for field ${index + 1}`}
+                        spellCheck={false}
+                      />
+                    </div>
+                  </label>
                 </div>
-                <label className="required-toggle">
-                  <input
-                    type="checkbox"
-                    checked={field.required}
-                    onChange={(event) => updateField(index, { required: event.target.checked })}
-                  />
-                  <span>Required value</span>
-                </label>
+                <div className="field-toggles">
+                  <label className="field-toggle">
+                    <input
+                      type="checkbox"
+                      checked={field.required}
+                      onChange={(event) => updateField(index, { required: event.target.checked })}
+                    />
+                    <span>Required value</span>
+                  </label>
+                  <label className="field-toggle">
+                    <input
+                      type="checkbox"
+                      checked={field.multiple}
+                      onChange={(event) => updateField(index, { multiple: event.target.checked })}
+                    />
+                    <span>Multiple values</span>
+                  </label>
+                </div>
               </div>
             ))}
           </div>
