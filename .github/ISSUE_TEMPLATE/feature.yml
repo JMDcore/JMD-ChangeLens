@@ -1,0 +1,26 @@
+name: Feature request
+description: Propose a focused product or technical improvement.
+title: "feat: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Which user or operational problem should ChangeLens solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed outcome
+      description: Describe the smallest useful result, not only an implementation.
+    validations:
+      required: true
+  - type: textarea
+    id: safety
+    attributes:
+      label: Security and responsible-use impact
+      description: Consider SSRF, target load, privacy, retention and alert delivery.
+    validations:
+      required: true
