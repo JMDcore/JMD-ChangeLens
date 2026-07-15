@@ -1,4 +1,4 @@
-FROM node:24-bookworm-slim AS build
+FROM node:26-bookworm-slim AS build
 
 WORKDIR /workspace
 RUN npm install --global pnpm@11.7.0
@@ -8,7 +8,7 @@ RUN pnpm install --frozen-lockfile \
     && pnpm --filter @changelens/api... build \
     && pnpm --filter @changelens/api deploy --legacy --prod /opt/changelens-api
 
-FROM node:24-bookworm-slim AS runtime
+FROM node:26-bookworm-slim AS runtime
 
 ENV NODE_ENV=production
 WORKDIR /app
