@@ -1,6 +1,6 @@
 "use client";
 
-import { Activity, ArrowRight, Clock3, Plus, RefreshCw, ShieldCheck, Sparkles, Workflow } from "lucide-react";
+import { AlertTriangle, ArrowRight, CheckCircle2, Clock3, PauseCircle, Plus, RefreshCw, Workflow } from "lucide-react";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 
@@ -38,9 +38,9 @@ export default function DashboardPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Live workspace"
-        title="Operations overview"
-        description="Monitor extraction health, changes and queue activity across your public web targets."
+        eyebrow="Workspace overview"
+        title="Web monitoring at a glance"
+        description="Review extraction health, detected changes and background activity across your public targets."
         actions={
           <>
             <button className="button button-quiet" onClick={load} disabled={refreshing}>
@@ -61,15 +61,15 @@ export default function DashboardPage() {
       ) : (
         <>
           <section className="kpi-rail" aria-label="Key metrics">
-            <div className="kpi-primary">
+            <div>
               <span className="kpi-icon">
                 <Workflow size={17} />
               </span>
               <div>
                 <small>Active monitors</small>
                 <strong>{dashboard.overview.monitorCount - dashboard.overview.pausedCount}</strong>
+                <span className="metric-note">{dashboard.overview.monitorCount} configured</span>
               </div>
-              <span className="metric-delta positive">+2 this week</span>
             </div>
             <div>
               <small>Success rate · 24h</small>
@@ -77,18 +77,12 @@ export default function DashboardPage() {
                 {dashboard.overview.successRate24h.toFixed(1)}
                 <em>%</em>
               </strong>
-              <span className="mini-bars" aria-hidden="true">
-                {[6, 8, 5, 9, 8, 10, 9, 11, 10, 12].map((height, index) => (
-                  <i key={index} style={{ height }} />
-                ))}
-              </span>
+              <span className="metric-note">{dashboard.overview.runs24h} runs in the last 24h</span>
             </div>
             <div>
               <small>Changes detected · 24h</small>
               <strong>{dashboard.overview.changes24h}</strong>
-              <span className="metric-note">
-                <Sparkles size={11} />3 require review
-              </span>
+              <span className="metric-note">Across all active monitors</span>
             </div>
             <div>
               <small>Average duration</small>
@@ -98,18 +92,8 @@ export default function DashboardPage() {
               </strong>
               <span className="metric-note">
                 <Clock3 size={11} />
-                across {dashboard.overview.runs24h} runs
+                Successful executions
               </span>
-            </div>
-            <div className="health-summary">
-              <span className="health-ring">
-                97<small>%</small>
-              </span>
-              <div>
-                <small>System health</small>
-                <strong>Operational</strong>
-                <span>API, workers and storage</span>
-              </div>
             </div>
           </section>
 
@@ -134,17 +118,30 @@ export default function DashboardPage() {
                     <h2>Queue activity</h2>
                     <p>Extraction jobs right now</p>
                   </div>
-                  <span className="live-indicator">
-                    <i />
-                    live
-                  </span>
+                  <span className="data-badge">Current snapshot</span>
                 </div>
                 <div className="queue-visual">
                   <div className="queue-track">
-                    <span style={{ width: "18%" }} />
-                    <span style={{ width: "26%" }} />
-                    <span style={{ width: "38%" }} />
-                    <span style={{ width: "18%" }} />
+                    {[
+                      dashboard.queue.waiting,
+                      dashboard.queue.active,
+                      dashboard.queue.delayed,
+                      dashboard.queue.failed,
+                    ].map((count, index, values) => (
+                      <span
+                        key={index}
+                        style={{
+                          width: `${
+                            (count /
+                              Math.max(
+                                1,
+                                values.reduce((sum, value) => sum + value, 0),
+                              )) *
+                            100
+                          }%`,
+                        }}
+                      />
+                    ))}
                   </div>
                   <div className="queue-stats">
                     <div>
@@ -169,46 +166,48 @@ export default function DashboardPage() {
                     </div>
                   </div>
                 </div>
-                <div className="worker-strip">
-                  <Activity size={13} />
-                  <span>2 workers online</span>
-                  <b>concurrency 4</b>
-                </div>
               </section>
 
-              <section className="panel change-preview">
+              <section className="panel monitor-health-panel">
                 <div className="panel-header">
                   <div>
-                    <h2>Latest change</h2>
-                    <p>Lumina desk lamp · 8 min ago</p>
+                    <h2>Monitor health</h2>
+                    <p>Current state of configured targets</p>
                   </div>
-                  <span className="change-badge">2 fields</span>
+                  <span className="data-badge">{dashboard.overview.monitorCount} total</span>
                 </div>
-                <div className="diff-preview">
+                <div className="health-list">
                   <div>
-                    <span className="diff-sign removed">−</span>
-                    <small>price</small>
-                    <code>129.00</code>
+                    <span className="health-icon healthy">
+                      <CheckCircle2 size={15} />
+                    </span>
+                    <span>Healthy</span>
+                    <strong>{dashboard.overview.healthyCount}</strong>
                   </div>
                   <div>
-                    <span className="diff-sign added">+</span>
-                    <small>price</small>
-                    <code>109.00</code>
+                    <span className="health-icon changed">
+                      <RefreshCw size={15} />
+                    </span>
+                    <span>Changed</span>
+                    <strong>{dashboard.overview.changedCount}</strong>
                   </div>
                   <div>
-                    <span className="diff-sign removed">−</span>
-                    <small>availability</small>
-                    <code>In stock</code>
+                    <span className="health-icon failing">
+                      <AlertTriangle size={15} />
+                    </span>
+                    <span>Failing</span>
+                    <strong>{dashboard.overview.failingCount}</strong>
                   </div>
                   <div>
-                    <span className="diff-sign added">+</span>
-                    <small>availability</small>
-                    <code>Only 4 left</code>
+                    <span className="health-icon paused">
+                      <PauseCircle size={15} />
+                    </span>
+                    <span>Paused</span>
+                    <strong>{dashboard.overview.pausedCount}</strong>
                   </div>
                 </div>
-                <Link href={`/monitors/${monitors[0]?.id ?? ""}`} className="change-review">
-                  <ShieldCheck size={13} />
-                  Review captured change <ArrowRight size={12} />
+                <Link href="/monitors" className="health-review">
+                  Review monitor inventory <ArrowRight size={12} />
                 </Link>
               </section>
             </aside>

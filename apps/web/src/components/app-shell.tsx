@@ -2,17 +2,14 @@
 
 import {
   Activity,
-  Bell,
   BookOpen,
-  Braces,
-  ChevronDown,
   Gauge,
   LogOut,
   Menu,
   PanelLeftClose,
   Plus,
-  Search,
   Settings,
+  ShieldCheck,
   Workflow,
   X,
 } from "lucide-react";
@@ -23,6 +20,7 @@ import { useEffect, useState } from "react";
 
 import { useAuth } from "./auth-provider";
 import { Brand } from "./brand";
+import { UserAvatar } from "./user-avatar";
 
 const navigation = [
   { href: "/", label: "Overview", icon: Gauge },
@@ -56,7 +54,9 @@ export function AppShell({ children }: { children: ReactNode }) {
     ? "New monitor"
     : pathname.startsWith("/monitors/")
       ? "Monitor detail"
-      : (navigation.find(({ href }) => active(href))?.label ?? "Workspace");
+      : pathname.startsWith("/settings")
+        ? "Settings"
+        : (navigation.find(({ href }) => active(href))?.label ?? "Workspace");
 
   return (
     <div className={`app-frame ${collapsed ? "is-collapsed" : ""}`}>
@@ -73,14 +73,13 @@ export function AppShell({ children }: { children: ReactNode }) {
         </div>
 
         <div className="workspace-switcher">
-          <div className="workspace-avatar">JM</div>
+          <UserAvatar name={user.name} avatarUrl={user.avatarUrl} size={34} className="workspace-avatar" />
           {!collapsed && (
             <div>
-              <strong>Personal workspace</strong>
-              <span>Developer plan</span>
+              <strong>{user.name}</strong>
+              <span>Personal workspace</span>
             </div>
           )}
-          {!collapsed && <ChevronDown size={14} />}
         </div>
 
         <nav className="primary-nav" aria-label="Main navigation">
@@ -95,7 +94,6 @@ export function AppShell({ children }: { children: ReactNode }) {
             >
               <Icon size={17} strokeWidth={1.8} />
               {!collapsed && <span>{label}</span>}
-              {label === "Runs" && !collapsed && <span className="nav-count">2</span>}
             </Link>
           ))}
           {!collapsed && <span className="nav-section-label secondary-label">Manage</span>}
@@ -140,27 +138,17 @@ export function AppShell({ children }: { children: ReactNode }) {
             <strong>{pageLabel}</strong>
           </div>
           <div className="topbar-actions">
-            <button className="search-trigger">
-              <Search size={15} />
-              <span>Search monitors</span>
-              <kbd>⌘ K</kbd>
-            </button>
             <div className="system-state">
-              <span /> All systems nominal
+              <ShieldCheck size={14} /> Safe crawling policy
             </div>
-            <button className="icon-button notification-button" aria-label="Notifications">
-              <Bell size={18} />
-              <span />
-            </button>
             <div className="user-menu">
-              <button>
-                <span className="user-avatar">JM</span>
+              <Link href="/settings" className="user-summary" aria-label="Open account settings">
+                <UserAvatar name={user.name} avatarUrl={user.avatarUrl} size={34} />
                 <span className="user-copy">
                   <strong>{user.name}</strong>
                   <small>{user.email}</small>
                 </span>
-                <ChevronDown size={14} />
-              </button>
+              </Link>
               <button
                 className="signout-quick"
                 aria-label="Sign out"
@@ -208,11 +196,7 @@ export function PageHeader({
   return (
     <div className="page-header">
       <div>
-        {eyebrow && (
-          <span className="eyebrow">
-            <Braces size={13} /> {eyebrow}
-          </span>
-        )}
+        {eyebrow && <span className="eyebrow">{eyebrow}</span>}
         <h1>{title}</h1>
         {description && <p>{description}</p>}
       </div>

@@ -3,11 +3,23 @@ import { expect, test } from "@playwright/test";
 test("dashboard exposes the operational state", async ({ page, isMobile }) => {
   await page.goto("/");
 
-  await expect(page.getByRole("heading", { name: "Operations overview" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Web monitoring at a glance" })).toBeVisible();
   await expect(page.getByText("Lumina desk lamp").first()).toBeVisible();
   await expect(page.getByRole("heading", { name: "Queue activity" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Latest change" })).toBeVisible();
-  if (!isMobile) await expect(page.getByText("All systems nominal")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Monitor health" })).toBeVisible();
+  if (!isMobile) await expect(page.getByText("Safe crawling policy")).toBeVisible();
+});
+
+test("account settings present the workspace owner", async ({ page }) => {
+  await page.goto("/settings");
+
+  await expect(page.getByRole("heading", { name: "Account and policies" })).toBeVisible();
+  await expect(page.getByRole("img", { name: "José Miguel Díaz profile photo" }).last()).toBeVisible();
+  await expect(page.getByRole("link", { name: /GitHub @JMDcore/ })).toHaveAttribute(
+    "href",
+    "https://github.com/JMDcore",
+  );
+  await expect(page.getByRole("heading", { name: "Responsible use policy" })).toBeVisible();
 });
 
 test("new monitor editor maps selectors to structured values", async ({ page }) => {
@@ -27,7 +39,7 @@ test("new monitor editor maps selectors to structured values", async ({ page }) 
   await page.getByLabel("Selector for field 4").fill('a[href="https://github.com/JMDcore"]');
   await page.getByLabel("Type for field 4").selectOption("url");
   await page.getByLabel("Attribute for field 4").fill("href");
-  await page.getByLabel("Multiple values").nth(3).check();
+  await page.locator(".field-card").nth(3).locator("label.field-toggle").filter({ hasText: "Multiple values" }).click();
 
   await expect(page.getByLabel("Key for field 4")).toHaveValue("github_url");
   await expect(page.getByLabel("Attribute for field 4")).toHaveValue("href");

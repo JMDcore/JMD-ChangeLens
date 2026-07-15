@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { AuthProvider } from "@/components/auth-provider";
 
 import "./globals.css";
+import "./product-theme.css";
 
 export const metadata: Metadata = {
   title: { default: "ChangeLens", template: "%s · ChangeLens" },
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   colorScheme: "dark",
-  themeColor: "#080b10",
+  themeColor: "#0c0f13",
   width: "device-width",
   initialScale: 1,
 };

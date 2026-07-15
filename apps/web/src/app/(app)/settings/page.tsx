@@ -1,13 +1,17 @@
-import { BellRing, Database, KeyRound, ShieldCheck } from "lucide-react";
+"use client";
+
+import { BellRing, Code2, Database, KeyRound, Mail, ShieldCheck, UserRound } from "lucide-react";
 
 import { PageHeader } from "@/components/app-shell";
+import { useAuth } from "@/components/auth-provider";
+import { UserAvatar } from "@/components/user-avatar";
 
 const controls = [
   {
     icon: ShieldCheck,
     title: "Target safety",
     text: "SSRF validation, redirect checks, robots.txt and per-domain concurrency are enforced by workers.",
-    tag: "enforced",
+    tag: "Enforced",
   },
   {
     icon: Database,
@@ -19,24 +23,65 @@ const controls = [
     icon: BellRing,
     title: "Webhook delivery",
     text: "Change events are signed with HMAC-SHA256 and retried with exponential backoff.",
-    tag: "signed",
+    tag: "Signed",
   },
   {
     icon: KeyRound,
     title: "Session security",
     text: "Opaque sessions use strict cookies, CSRF protection and Argon2id password hashing.",
-    tag: "active",
+    tag: "Active",
   },
 ];
 
 export default function SettingsPage() {
+  const { user } = useAuth();
+
   return (
     <>
       <PageHeader
-        eyebrow="Workspace policy"
-        title="Settings"
-        description="Security, retention and delivery defaults for the personal workspace."
+        eyebrow="Workspace settings"
+        title="Account and policies"
+        description="Identity, security, retention and delivery defaults for this personal workspace."
       />
+
+      {user && (
+        <section className="panel account-panel">
+          <div className="account-identity">
+            <UserAvatar name={user.name} avatarUrl={user.avatarUrl} size={88} className="account-avatar" />
+            <div>
+              <span className="account-kicker">Workspace owner</span>
+              <h2>{user.name}</h2>
+              <p>Software engineering · AI · Automation</p>
+            </div>
+          </div>
+          <div className="account-details">
+            <a href={`mailto:${user.email}`}>
+              <Mail size={15} />
+              <span>
+                <small>Email</small>
+                <strong>{user.email}</strong>
+              </span>
+            </a>
+            <a href="https://github.com/JMDcore" target="_blank" rel="noreferrer">
+              <Code2 size={15} />
+              <span>
+                <small>GitHub</small>
+                <strong>@JMDcore</strong>
+              </span>
+            </a>
+            <div>
+              <UserRound size={15} />
+              <span>
+                <small>Member since</small>
+                <strong>
+                  {new Intl.DateTimeFormat("en", { month: "long", year: "numeric" }).format(new Date(user.createdAt))}
+                </strong>
+              </span>
+            </div>
+          </div>
+        </section>
+      )}
+
       <div className="settings-grid">
         {controls.map(({ icon: Icon, title, text, tag }) => (
           <section className="panel settings-card" key={title}>
