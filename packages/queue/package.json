@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@changelens/contracts": "workspace:*",
-    "bullmq": "5.80.3",
+    "bullmq": "5.80.9",
     "ioredis": "5.10.1"
   },
   "devDependencies": {
