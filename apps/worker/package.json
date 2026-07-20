@@ -22,7 +22,7 @@
     "@changelens/storage": "workspace:*",
     "bullmq": "5.80.3",
     "drizzle-orm": "0.45.2",
-    "ioredis": "5.10.1",
+    "ioredis": "5.11.1",
     "pino": "10.3.1",
     "prom-client": "15.1.3"
   },
