@@ -20,7 +20,7 @@
   "dependencies": {
     "@changelens/contracts": "workspace:*",
     "bullmq": "5.80.3",
-    "ioredis": "5.10.1"
+    "ioredis": "5.11.1"
   },
   "devDependencies": {
     "@vitest/coverage-v8": "4.1.10",
