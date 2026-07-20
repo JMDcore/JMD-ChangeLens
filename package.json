@@ -33,7 +33,7 @@
     "services:down": "docker compose down"
   },
   "devDependencies": {
-    "@eslint/js": "9.39.5",
+    "@eslint/js": "10.0.1",
     "@types/node": "26.1.1",
     "@playwright/test": "1.61.1",
     "eslint": "9.39.5",
