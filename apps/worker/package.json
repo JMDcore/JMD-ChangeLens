@@ -20,7 +20,7 @@
     "@changelens/queue": "workspace:*",
     "@changelens/scraper": "workspace:*",
     "@changelens/storage": "workspace:*",
-    "bullmq": "5.80.3",
+    "bullmq": "5.80.9",
     "drizzle-orm": "0.45.2",
     "ioredis": "5.10.1",
     "pino": "10.3.1",
