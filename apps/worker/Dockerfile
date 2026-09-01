@@ -8,7 +8,7 @@ RUN pnpm install --frozen-lockfile \
     && pnpm --filter @changelens/worker... build \
     && pnpm --filter @changelens/worker deploy --legacy --prod /opt/changelens-worker
 
-FROM mcr.microsoft.com/playwright:v1.61.1-noble AS runtime
+FROM mcr.microsoft.com/playwright:v1.62.1-noble AS runtime
 
 ENV NODE_ENV=production \
     PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
